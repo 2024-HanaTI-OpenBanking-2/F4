@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+<div class="navibar">
+  <h1>Bank</h1>
+  <div class="menu_bar">
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <p>text</p>
+    <div id="menu_login_button"><a>로그인</a></div>
+    <span class="material-symbols-outlined">search</span>
+    <span class="material-symbols-outlined">menu</span>
+  </div>
+</div>
+<div class="content_container">
+  <h1>로그인</h1>
+  <div class="login_container">
+    <div class="login_img">
+      <img th:src="@{/img/login_png.png}" alt="login_img">
+    </div>
+    <form th:action="@{/login}" method="post" class="login">
+      <div class="login_input">
+        <input type="text" name="customerId" placeholder="아이디를 입력해주세요."/>
+        <input type="password" name="customerPassword" placeholder="비밀번호를 입력해주세요."/>
+      </div>
+      <div class="login_submit">
+        <button type="submit">로그인</button>
+        <p style="padding-left: 90px" class="small_text">아이디 찾기 / 비밀번호 재설정 | 회원가입</p>
+        <div th:if="${error}" class="login_error">
+          <p th:text="${error}" style="color:red;" class="small_text"></p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
