@@ -126,12 +126,26 @@
 
 .element .overlap-3 {
   position: absolute;
-  width: 447px;
+  width: 200px;
   height: 217px;
   top: 398px;
-  left: 900px;
+  left: 1100px;
   background-color: #d9d9d9;
   border-radius: 20px;
+}
+.center .rectangle {
+  position: absolute;
+  width: 100px;
+  height: 132px;
+  right: 700px;
+  background-color: darkseagreen;
+  border-radius: 20px;
+}
+.center {
+  display: flex;
+  justify-content: center; /* 가로축 중앙 정렬 */
+  align-items: center; /* 세로축 중앙 정렬 */
+  height: 100%; /* 이 속성은 .center가 특정 높이를 가지고 있어야 합니다 */
 }
 
 .element .text-wrapper-3 {
@@ -150,15 +164,7 @@
   color: #333333; /* 호버 시 글자색 변경 */
 }
 
-.element .rectangle {
-  position: absolute;
-  width: 389px;
-  height: 132px;
-  top: 64px;
-  left: 29px;
-  background-color: #ffffff;
-  border-radius: 20px;
-}
+
 
 .element .text-wrapper-4 {
   position: absolute;
@@ -279,12 +285,11 @@
 .element .text-wrapper-10 {
   position: absolute;
   width: 59px;
-  top: 4px;
   left: 16px;
   font-family: "Inter-Regular", Helvetica;
   font-weight: 400;
   color: #000000;
-  font-size: 15px;
+  font-size: 20px;
   letter-spacing: 0;
   line-height: normal;
 }
@@ -342,7 +347,26 @@
   top: 26px;
   left: 1358px;
 }
-
+.move-login {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.overlap-5 .text-wrapper-10{
+  position: absolute;
+  width: 100%;
+  top: 30px;
+  left: 50px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.overlap-5:hover {
+  background-color: darkseagreen; /* 호버 시 글자색 변경 */
+}
 
 /*homeslider*/
 
