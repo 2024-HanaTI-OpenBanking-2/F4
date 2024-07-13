@@ -1,14 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Home</title>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" th:href="@{/css/home.css}"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+  <style>
+
+
+  </style>
 </head>
 <body>
-<div>
-  <h1>Welcome, <span th:text="${customer.name}"></span></h1>
-  <a th:href="@{/logout}">Logout</a>
-  <a th:href="@{/authorize}">토큰 발급요청</a>
-  <a th:href="@{/show-send-form}">본인인증</a>
+<div class="element">
+  <div class="div">
+    <div class="overlap">
+      <!-- Dynamic username display -->
+      <div class="text-wrapper" th:text="'F4'">Bank</div>
+
+      <!-- Swiper -->
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="img/slide1.jpg" alt="Slide 1"/></div>
+          <div class="swiper-slide"><img src="img/slide2.jpg" alt="Slide 2"/></div>
+          <div class="swiper-slide"><img src="img/slide3.jpg" alt="Slide 3"/></div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Navigation -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+    <div class="overlap-3">
+      <div class="text-wrapper-3" th:text="'F4'">my bank</div>
+      <div class="rectangle"></div>
+    </div>
+
+    <img class="line" src="img/line-1.svg"/>
+    <div class="overlap-4">
+      <div class="overlap-group-wrapper">
+        <div class="text-wrapper-4" th:text="${customer.name} + '님 안녕하세요'">Customer greeting</div>
+        <div class="div-wrapper">
+          <!-- Logout link with Thymeleaf -->
+          <div class="text-wrapper-9">
+            <a class="logout" th:href="@{/logout}" th:text="'로그아웃'">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="text-text-text-text">
+      text text text text text text text text
+    </p>
+    <div class="overlap-5">
+      <form>
+        <div class="text-wrapper-11" th:text="'오픈 뱅킹 이용하기'">Use Open Banking</div>
+      </form>
+    </div>
+    <img class="align-justify" src="img/align-justify.svg"/>
+    <span class="search material-symbols-outlined">search</span>
+  </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+  var mySwiper = new Swiper('.mySwiper', {
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    mousewheel: true,
+    keyboard: true,
+  });
+</script>
 </body>
 </html>
