@@ -377,3 +377,22 @@
 .swiper-pagination-bullet-active {
   background-color: #000; /* Black for active bullet */
 }
+
+
+/*오픈뱅킹 이용하기 버튼 css*/
+.apiButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  width: 288px;
+  height: 68px;
+}
+
+.apiButton:hover {
+  background-color: #45a049;
+}
+/*오픈뱅킹 이용하기 버튼 css 끝*/
