@@ -11,11 +11,11 @@
   .then(response => response.json())
   .then(data => {
   console.log('Success:', data);
-  alert('API 요청 성공: ' + JSON.stringify(data));
+  alert('오픈뱅킹 신청되었습니다: ' + JSON.stringify(data));
 })
   .catch((error) => {
   console.error('Error:', error);
-  alert('API 요청 실패');
+  alert('오픈뱅킹 이용하기를 실패하였습니다');
 });
 }
 

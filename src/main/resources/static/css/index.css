@@ -142,9 +142,12 @@
   font-family: "Inter-Regular", Helvetica;
   font-weight: 400;
   color: #000000;
-  font-size: 16px;
+  font-size: 40px;
   letter-spacing: 0;
   line-height: normal;
+}
+.text-wrapper-3:hover {
+  color: #333333; /* 호버 시 글자색 변경 */
 }
 
 .element .rectangle {
@@ -345,8 +348,8 @@
 
 /* Swiper Container Customization */
 .swiper {
-  width: 100%;  /* Adjust as necessary */
-  height: 100%; /* Adjust as necessary */
+  width: 80%;  /* Adjust as necessary */
+  height: 80%; /* Adjust as necessary */
 }
 
 .swiper-slide {
