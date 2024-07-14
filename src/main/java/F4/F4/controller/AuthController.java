@@ -73,7 +73,8 @@ public class AuthController {
                 authService.updateAccessToken(customerId, access_token);
                 model.addAttribute("customerId", customerId);
                 model.addAttribute("accessToken", access_token);
-                return "result";
+//                return "result";
+                return "authcomplete";
         }
         return "redirect:/login";
     }
