@@ -8,5 +8,7 @@
 <p>Access Token: <span th:text="${accessToken}"></span></p>
 <p>profile: <span th:text="${customerId}"></span></p>
 <a href="/home">Go back to Home</a>
+<a th:href="@{/auth-code-request}">auth-code 발급 요청</a>
+
 </body>
 </html>
