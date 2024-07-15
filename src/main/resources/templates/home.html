@@ -58,7 +58,6 @@
       <div class="overlap-5">
         <form onsubmit="sendAPIRequest(); return false;">
           <button type="submit" id="authenticateLink" class="apiButton">오픈 뱅킹 이용하기</button>
-          <!--          <a href="#" id="authenticateLink">본인인증 (모달)</a>-->
         </form>
       </div>
 
@@ -83,7 +82,6 @@
     keyboard: true,
   });
 </script>
-</body>
 <script>
   document.getElementById('authenticateLink').addEventListener('click', function (e) {
     e.preventDefault();
@@ -92,16 +90,27 @@
     var left = (screen.width / 2) - (width / 2);
     var top = (screen.height / 2) - (height / 2);
     var windowFeatures = `width=${width},height=${height},top=${top},left=${left},resizable=yes`;
-    window.open('/show-send-form', 'Authenticate', windowFeatures);
+    var popup = window.open('/show-send-form', 'Authenticate', windowFeatures);
+
+    // 팝업 창이 닫혔는지 확인하는 함수
+    var checkPopupClosed = setInterval(function() {
+      if (popup && popup.closed) {
+        clearInterval(checkPopupClosed);
+        // 팝업이 닫혔을 때 처리할 작업을 여기에 작성
+        // window.location.href = '/auth-code-page.html';
+      }
+    }, 500);
   });
 
   window.addEventListener("message", function (event) {
     if (event.data === "인증성공") {
       // 필요한 화면 업데이트 로직
-      location.reload();  // 예: 페이지 새로고침
-      alert("인증이 완료되었습니다.");
+      // location.reload();  // 예: 페이지 새로고침
+      window.location.href = '/auth-code-page';
+      // alert("인증이 완료되었습니다.");
       console.log("인증이 완료되었습니다.");
     }
   }, false);
 </script>
+</body>
 </html>
