@@ -34,6 +34,24 @@ public class LoginController {
     }
   }
 
+  @GetMapping("/profile")
+  public String getUserProfile(HttpServletRequest request, Model model) {
+    HttpSession session = request.getSession(false); // 기존 세션 가져오기, 없으면 null 반환
+    if (session != null) {
+      F4Customer customer = (F4Customer) session.getAttribute("customer");
+      if (customer != null) {
+        model.addAttribute("customerId", customer.getCustomerId());
+        return "profile";
+      } else {
+        return "redirect:/login"; // 세션에 사용자 정보가 없으면 로그인 페이지로 리다이렉트
+      }
+    } else {
+      return "redirect:/login"; // 세션 자체가 없으면 로그인 페이지로 리다이렉트
+    }
+  }
+
+
+
   @GetMapping("/logout")
   public String logout(HttpServletRequest request) {
     HttpSession session = request.getSession();

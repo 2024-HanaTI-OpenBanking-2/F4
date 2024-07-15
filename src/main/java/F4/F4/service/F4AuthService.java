@@ -2,15 +2,23 @@ package F4.F4.service;
 
 import F4.F4.dto.AccessTokenResponseDTO;
 import java.util.UUID;
+
+import F4.F4.entity.F4Customer;
+import F4.F4.repository.F4CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 public class F4AuthService {
   private final RestTemplate restTemplate = new RestTemplate();
 
+  @Autowired
+  private F4CustomerRepository f4CustomerRepository;
   // application.properties 파일에서 값을 읽어옴
   @Value("${auth.server.url}") // 오픈뱅킹 서버
   private String authServerUrl;
@@ -30,10 +38,10 @@ public class F4AuthService {
         "&redirect_uri=" + redirectUri + "&scope=read&state=" + state ;
   }
 
-  public String getShowSendUrl() {
+  public String getShowSendUrl(String customerId) {
     String state = UUID.randomUUID().toString();
     return authServerUrl + "/show-send-form?response_type=code&client_id=" + clientId +
-        "&redirect_uri=" + redirectUri + "&scope=read&state=" + state ;
+        "&redirect_uri=" + redirectUri + "&scope=read&state=" + state + "&customer_id=" + customerId;
   }
 
   public AccessTokenResponseDTO getAccessToken(String code) {
@@ -41,6 +49,20 @@ public class F4AuthService {
         "&redirect_uri=" + redirectUri + "&client_id=" + clientId + "&client_secret=" + clientSecret;
 
     ResponseEntity<AccessTokenResponseDTO> response = restTemplate.getForEntity(tokenUrl, AccessTokenResponseDTO.class);
-    return response.getBody();
+    return response.getBody(); // 토큰 객체
+  }
+
+  @Transactional
+  public void updateAccessToken(String customerId, String accessToken) {
+
+    F4Customer customer = null;
+    try {
+      customer = f4CustomerRepository.findById(customerId)
+              .orElseThrow(() -> new Exception("Invalid customer ID: " + customerId));
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+    customer.setAccessTokenId(accessToken);
+    f4CustomerRepository.save(customer);
   }
 }

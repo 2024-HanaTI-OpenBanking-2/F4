@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>인증완료</title>
+</head>
+<body>
+<h2>본인인증이 완료되었습니다.</h2>
+<button id="homeButton">홈으로</button>
+
+<script>
+    // 버튼 요소에 접근하기 위해 ID를 사용합니다.
+    var homeButton = document.getElementById('homeButton');
+
+    // 클릭 이벤트 리스너를 추가합니다.
+    homeButton.addEventListener('click', function() {
+        window.close();  // '홈으로' 버튼 클릭 시 팝업 창을 닫습니다.
+    });
+</script>
+</body>
+</html>
