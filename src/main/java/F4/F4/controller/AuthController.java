@@ -3,10 +3,10 @@ package F4.F4.controller;
 import F4.F4.dto.AccessTokenResponseDTO;
 import F4.F4.entity.F4Customer;
 import F4.F4.service.F4AuthService;
+import F4.F4.dto.RequestAuthCodeResponseDTO;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -21,10 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AuthController {
 
-
     @Autowired
     private F4AuthService authService;
-
 
     @GetMapping("/show-send-form") // 본인 인증하기 버튼 클릭시
     public String showSend(HttpServletRequest request, Model model) {
@@ -48,7 +46,6 @@ public class AuthController {
         }
     }
 
-
     @GetMapping("/authorize")
     public String authorize() {
         String authorizeUrl = authService.getAuthorizeUrl();
@@ -70,13 +67,50 @@ public class AuthController {
     @GetMapping("/tokenResult")
     public String result(@RequestParam("customer_id") String customerId, @RequestParam(required = false) String access_token, @RequestParam(required = false) String state, Model model) {
         if (access_token != null) {
-                authService.updateAccessToken(customerId, access_token);
-                model.addAttribute("customerId", customerId);
-                model.addAttribute("accessToken", access_token);
-//                return "result"; 결과 페이지
-                return "authcomplete";
+            authService.updateAccessToken(customerId, access_token);
+            model.addAttribute("customerId", customerId);
+            model.addAttribute("accessToken", access_token);
+            return "authcomplete";
         }
         return "redirect:/login";
     }
 
+    @GetMapping("/request-auth-code")
+    public ResponseEntity<?> requestAuthCode(HttpServletRequest request, Model model) {
+        String customerId = getUserId(request, model);
+        if (customerId == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in");
+        }
+        try {
+            System.out.println("1");
+            String accessToken = authService.getAccessTokenByCustomerId(customerId);
+            System.out.println("2");
+            RequestAuthCodeResponseDTO authCodeResponse = authService.requestAuthCode(accessToken, customerId);
+            System.out.println("3");
+            authService.saveAuthCode(authCodeResponse);  // Save the auth code using DTO
+            System.out.println("4");
+            return ResponseEntity.ok(authCodeResponse);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error in F4: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/save-auth-code")
+    public ResponseEntity<?> saveAuthCode(@RequestParam("auth_code") String authCode, @RequestParam("access_token") String accessToken) {
+        try {
+            RequestAuthCodeResponseDTO responseDTO = RequestAuthCodeResponseDTO.builder()
+                .authCode(authCode)
+                .accessToken(accessToken)
+                .build();
+            authService.saveAuthCode(responseDTO);
+            return ResponseEntity.ok("Auth code saved successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error in F4: " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/auth-code-page")
+    public String authCodePage() {
+        return "auth-code-page"; // templates 폴더 내의 auth-code-page.html을 렌더링
+    }
 }

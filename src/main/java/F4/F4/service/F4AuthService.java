@@ -1,17 +1,22 @@
 package F4.F4.service;
 
 import F4.F4.dto.AccessTokenResponseDTO;
+import F4.F4.entity.F4AuthCode;
+import F4.F4.repository.F4AuthCodeRepository;
+import F4.F4.dto.RequestAuthCodeResponseDTO;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import F4.F4.entity.F4Customer;
 import F4.F4.repository.F4CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.transaction.annotation.Transactional;
-
 
 @Service
 public class F4AuthService {
@@ -19,7 +24,10 @@ public class F4AuthService {
 
   @Autowired
   private F4CustomerRepository f4CustomerRepository;
-  // application.properties 파일에서 값을 읽어옴
+
+  @Autowired
+  private F4AuthCodeRepository f4AuthCodeRepository;
+
   @Value("${auth.server.url}") // 오픈뱅킹 서버
   private String authServerUrl;
 
@@ -54,15 +62,36 @@ public class F4AuthService {
 
   @Transactional
   public void updateAccessToken(String customerId, String accessToken) {
-
-    F4Customer customer = null;
-    try {
-      customer = f4CustomerRepository.findById(customerId)
-              .orElseThrow(() -> new Exception("Invalid customer ID: " + customerId));
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
+    F4Customer customer = f4CustomerRepository.findById(customerId)
+        .orElseThrow(() -> new RuntimeException("Invalid customer ID: " + customerId));
     customer.setAccessTokenId(accessToken);
     f4CustomerRepository.save(customer);
+  }
+
+  public RequestAuthCodeResponseDTO requestAuthCode(String accessToken, String customerId) {
+    String url = authServerUrl + "/request-auth-code?access_token=" + accessToken + "&customer_id=" + customerId;
+    ResponseEntity<RequestAuthCodeResponseDTO> response = restTemplate.getForEntity(url, RequestAuthCodeResponseDTO.class);
+
+    if (response.getStatusCode() == HttpStatus.OK) {
+      return response.getBody(); // URL with auth_code
+    } else {
+      throw new RuntimeException("Failed to request auth code from OpenBank");
+    }
+  }
+
+  @Transactional
+  public void saveAuthCode(RequestAuthCodeResponseDTO responseDTO) {
+    F4AuthCode f4AuthCode = new F4AuthCode();
+    f4AuthCode.setAuthCodeId(responseDTO.getAuthCode());
+    f4AuthCode.setAccessTokenId(responseDTO.getAccessToken());
+    f4AuthCode.setStateCode(UUID.randomUUID().toString());
+    f4AuthCode.setApiTranId(UUID.randomUUID().toString());
+    f4AuthCodeRepository.save(f4AuthCode);
+  }
+
+  public String getAccessTokenByCustomerId(String customerId) {
+    F4Customer customer = f4CustomerRepository.findById(customerId)
+        .orElseThrow(() -> new RuntimeException("Customer not found: " + customerId));
+    return customer.getAccessTokenId();
   }
 }
