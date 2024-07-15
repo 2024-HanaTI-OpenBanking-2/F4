@@ -8,10 +8,10 @@ import lombok.Data;
 @Table(name = "f4_authorization_codes")
 public class F4AuthorizationCode {
 
+  @Column(name = "customer_id", length = 100)
+  private String customerId;
+
   @Id
   @Column(name = "authorization_code_id", nullable = false, length = 255)
   private String authorizationCodeId;
-
-  @Column(name = "customer_id", length = 100)
-  private String customerId;
 }

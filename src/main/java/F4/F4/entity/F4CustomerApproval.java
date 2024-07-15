@@ -1,6 +1,7 @@
 package F4.F4.entity;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 import lombok.Data;
 import java.sql.Timestamp;
 
@@ -17,13 +18,13 @@ public class F4CustomerApproval {
   private Timestamp approvalDate;
 
   @Column(name = "approval_amount")
-  private Integer approvalAmount;
+  private BigDecimal approvalAmount;
 
   @Column(name = "merchant_id", nullable = false, length = 255)
   private String merchantId;
 
   @Column(name = "benefit_amount")
-  private Integer benefitAmount;
+  private BigDecimal benefitAmount;
 
   @Column(name = "approval_status_code", length = 255)
   private String approvalStatusCode;
