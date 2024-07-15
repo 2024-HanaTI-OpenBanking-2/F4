@@ -96,3 +96,16 @@
 .login_error > .small_text {
   padding-left: 65px;
 }
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  text-decoration: none;
+  color: black;
+}
+
+.logo:hover {
+  color: gray;
+}

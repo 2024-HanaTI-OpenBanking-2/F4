@@ -1,0 +1,452 @@
+.element {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%; /* 전체 폭을 화면에 맞춤 */
+  margin: 0; /* 여백 제거 */
+  padding: 0; /* 내부 여백 제거 */
+}
+
+.element .div {
+  background-color: #ffffff;
+  width: 100%; /* 내부 div 역시 전체 폭에 맞춤 */
+  height: 1024px;
+  position: relative;
+  margin: 0 auto; /* 가운데 정렬을 위해 추가 */
+}
+
+.element .overlap {
+  position: absolute;
+  width: 809px;
+  height: 1022px;
+  top: 0;
+  left: 0;
+  background-color: #d9d9d9;
+  border-top-right-radius: 50px;  /* Rounds the top right corner */
+  border-bottom-right-radius: 50px;  /* Rounds the bottom right corner */
+}
+
+.element .ellipse {
+  left: 178px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 866px;
+  background-color: #00000033;
+  border-radius: 10px;
+}
+
+.element .ellipse-2 {
+  left: 147px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 866px;
+  background-color: #00000033;
+  border-radius: 10px;
+}
+
+.element .text-wrapper {
+  position: absolute;
+  width: 139px;
+  top: 21px;
+  left: 90px;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 36px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .overlap-group {
+  position: absolute;
+  width: 573px;
+  height: 658px;
+  top: 172px;
+  left: 147px;
+  background-color: #00000033;
+}
+
+.element .text-wrapper-2 {
+  position: absolute;
+  width: 58px;
+  top: 316px;
+  left: 258px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .ellipse-3 {
+  left: 116px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 866px;
+  background-color: #00000033;
+  border-radius: 10px;
+}
+
+.element .overlap-2 {
+  position: absolute;
+  width: 44px;
+  height: 24px;
+  top: 864px;
+  left: 241px;
+}
+
+.element .chevron-right {
+  left: 20px;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0;
+}
+
+.element .chevron-left {
+  left: 0;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0;
+}
+
+.element .pause {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 864px;
+  left: 209px;
+}
+
+.element .overlap-3 {
+  position: absolute;
+  width: 200px;
+  height: 217px;
+  top: 398px;
+  left: 1100px;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+}
+.center .rectangle {
+  position: absolute;
+  width: 100px;
+  height: 132px;
+  right: 700px;
+  background-color: darkseagreen;
+  border-radius: 20px;
+}
+.center {
+  display: flex;
+  justify-content: center; /* 가로축 중앙 정렬 */
+  align-items: center; /* 세로축 중앙 정렬 */
+  height: 100%; /* 이 속성은 .center가 특정 높이를 가지고 있어야 합니다 */
+}
+
+.element .text-wrapper-3 {
+  position: absolute;
+  width: 300px;
+  top: 4px;
+  left: 25px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.text-wrapper-3:hover {
+  color: #333333; /* 호버 시 글자색 변경 */
+}
+
+
+
+.element .text-wrapper-4 {
+  position: absolute;
+  width: 300px;
+  top: 4px;
+  left: -250px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .text-wrapper-5 {
+  left: 912px;
+  position: absolute;
+  width: 45px;
+  top: 24px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .text-wrapper-6 {
+  left: 1152px;
+  position: absolute;
+  width: 45px;
+  top: 24px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .text-wrapper-7 {
+  left: 1072px;
+  position: absolute;
+  width: 45px;
+  top: 24px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .text-wrapper-8 {
+  left: 992px;
+  position: absolute;
+  width: 45px;
+  top: 24px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .line {
+  position: absolute;
+  width: 445px;
+  height: 2px;
+  top: 844px;
+  left: 900px;
+  object-fit: cover;
+}
+
+.element .overlap-4 {
+  position: absolute;
+  width: 92px;
+  height: 24px;
+  top: 28px;
+  left: 1255px;
+}
+
+.element .overlap-group-wrapper {
+  position: absolute;
+  width: 92px;
+  height: 24px;
+  top: 0;
+  left: 0;
+}
+
+.element .div-wrapper {
+  position: relative;
+  width: 90px;
+  height: 24px;
+  background-color: #d9d9d9;
+  border-radius: 40px;
+}
+
+.element .text-wrapper-9 {
+  position: absolute;
+  width: 60px;
+  top: 4px;
+  left: 25px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+
+}
+.text-wrapper-9 .logout{
+  text-decoration: none;
+  color: #000000;
+}
+
+.element .text-wrapper-10 {
+  position: absolute;
+  width: 59px;
+  left: 16px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .text-text-text-text {
+  position: absolute;
+  width: 407px;
+  top: 875px;
+  left: 926px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .overlap-5 {
+  position: absolute;
+  width: 288px;
+  height: 68px;
+  top: 664px;
+  left: 984px;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+}
+
+.element .text-wrapper-11 {
+  position: absolute;
+  width: 201px;
+  top: 24px;
+  left: 76px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.element .align-justify {
+  position: absolute;
+  width: 26px;
+  height: 28px;
+  top: 24px;
+  left: 1395px;
+}
+
+.element .search {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 26px;
+  left: 1358px;
+}
+.move-login {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.overlap-5 .text-wrapper-10{
+  position: absolute;
+  width: 100%;
+  top: 30px;
+  left: 50px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.overlap-5:hover {
+  background-color: darkseagreen; /* 호버 시 글자색 변경 */
+}
+
+/*homeslider*/
+
+/* Swiper Container Customization */
+.swiper {
+  width: 80%;  /* Adjust as necessary */
+  height: 80%; /* Adjust as necessary */
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.swiper-slide img {
+  width: 100%;  /* Full width of the slide */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 100%; /* Ensure it doesn't exceed the slide */
+}
+
+/* Navigation Buttons Customization */
+.swiper-button-prev, .swiper-button-next {
+  color: #fff; /* White color for visibility */
+  width: 50px; /* Larger hit area */
+  height: 50px; /* Larger hit area */
+}
+
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  color: #ccc; /* Light grey on hover for feedback */
+}
+
+.swiper-pagination-bullet {
+  background-color: #fff; /* White bullets for pagination */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #000; /* Black for active bullet */
+}
+
+
+/*오픈뱅킹 이용하기 버튼 css*/
+.apiButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  width: 288px;
+  height: 68px;
+}
+
+.apiButton:hover {
+  background-color: #45a049;
+}
+/*오픈뱅킹 이용하기 버튼 css 끝*/
+
+.overlap-4 .account-transfer {
+  position: absolute;
+  left: -110px;
+  top: -5px;
+}
+
+.account-transfer {
+  display: inline-block; /* 또는 필요에 따라 'block' 등으로 설정 */
+  padding: 5px 5px;
+  background-color: #f2f2f2;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 15px;
+  font-family: "Inter-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.account-transfer:hover {
+  background-color: #333333; /* 호버 시 배경색 변경 */
+}
