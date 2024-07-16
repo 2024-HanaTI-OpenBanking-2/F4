@@ -57,7 +57,9 @@ public class AuthController {
         AccessTokenResponseDTO accessTokenResponse = authService.getAccessToken(code);
         if (accessTokenResponse != null) {
             Map<String, String> response = new HashMap<>();
+            // 배포시 실제 IP 주소로 변경하기
             response.put("redirectUrl", "http://localhost:8081/tokenResult?access_token=" + accessTokenResponse.getAccess_token() + "&state=" + state + "&customer_id=" + customerId);
+
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error obtaining access token");

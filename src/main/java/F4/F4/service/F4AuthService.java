@@ -92,6 +92,7 @@ public class F4AuthService {
   public String getAccessTokenByCustomerId(String customerId) {
     F4Customer customer = f4CustomerRepository.findById(customerId)
         .orElseThrow(() -> new RuntimeException("Customer not found: " + customerId));
+    System.out.println("getAccessTokenByCustomerId : " + customer.getAccessTokenId());
     return customer.getAccessTokenId();
   }
 }

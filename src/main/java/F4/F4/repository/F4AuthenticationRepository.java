@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 public interface F4AuthenticationRepository extends
     JpaRepository<F4Authentication, String> {
+  F4Authentication findByAccessTokenId(String accessTokenId);
 
 }
