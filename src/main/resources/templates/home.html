@@ -59,8 +59,9 @@
         <form onsubmit="sendAPIRequest(); return false;">
           <button type="submit" id="authenticateLink" class="apiButton">오픈 뱅킹 이용하기</button>
         </form>
+        <a th:href="@{/request-auth-code}"> 토큰발급</a>
+        <a th:href="@{/accountinfo}">계좌통합조회</a>
       </div>
-
       <img class="align-justify" src="img/align-justify.svg"/>
       <span class="search material-symbols-outlined">search</span>
     </div>
