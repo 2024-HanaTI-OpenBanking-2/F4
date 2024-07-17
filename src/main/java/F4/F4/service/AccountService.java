@@ -1,17 +1,12 @@
 package F4.F4.service;
 
 import F4.F4.dto.AccountInfoDTO;
-import F4.F4.dto.AccountInfoResponseDTO;
 import F4.F4.dto.CombinedAccountInfo;
-import F4.F4.dto.RequestAuthCodeResponseDTO;
 import F4.F4.entity.F4AuthCode;
 import F4.F4.repository.F4AuthCodeRepository;
 import F4.F4.repository.F4AuthenticationRepository;
-import java.util.Collections;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -57,6 +52,5 @@ public class AccountService {
             () -> new RuntimeException("Auth code not found for access token: " + accessToken));
     return f4AuthCode.getAuthCodeId();
   }
-
 
 }
