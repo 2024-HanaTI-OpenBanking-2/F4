@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface F4CustomerRepository extends JpaRepository<F4Customer, String> {
   F4Customer findByCustomerIdAndCustomerPassword(String customerId, String customerPassword);
+
+  F4Customer findByCustomerId(String customerId);
 }
