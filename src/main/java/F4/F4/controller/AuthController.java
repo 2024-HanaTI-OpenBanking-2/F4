@@ -11,6 +11,7 @@ import java.util.Map;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -84,28 +85,12 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not logged in");
         }
         try {
-            System.out.println("1");
             String accessToken = authService.getAccessTokenByCustomerId(customerId);
-            System.out.println("2");
             RequestAuthCodeResponseDTO authCodeResponse = authService.requestAuthCode(accessToken, customerId);
-            System.out.println("3");
             authService.saveAuthCode(authCodeResponse);  // Save the auth code using DTO
-            System.out.println("4");
             return ResponseEntity.ok(authCodeResponse);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error in F4: " + e.getMessage());
-        }
-    }
-
-    @GetMapping("/save-auth-code")
-    public ResponseEntity<?> saveAuthCode(@RequestParam("auth_code") String authCode, @RequestParam("access_token") String accessToken) {
-        try {
-            RequestAuthCodeResponseDTO responseDTO = RequestAuthCodeResponseDTO.builder()
-                .authCode(authCode)
-                .accessToken(accessToken)
-                .build();
-            authService.saveAuthCode(responseDTO);
-            return ResponseEntity.ok("Auth code saved successfully");
+        } catch (DataIntegrityViolationException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate auth code or access token");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error in F4: " + e.getMessage());
         }

@@ -5,7 +5,10 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "f4_auth_codes")
+@Table(name = "f4_auth_codes", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "auth_code_id"),
+    @UniqueConstraint(columnNames = "access_token_id")
+})
 public class F4AuthCode {
 
   @Id
