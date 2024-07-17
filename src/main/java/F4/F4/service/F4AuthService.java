@@ -12,6 +12,7 @@ import F4.F4.entity.F4Customer;
 import F4.F4.repository.F4CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -81,12 +82,16 @@ public class F4AuthService {
 
   @Transactional
   public void saveAuthCode(RequestAuthCodeResponseDTO responseDTO) {
-    F4AuthCode f4AuthCode = new F4AuthCode();
-    f4AuthCode.setAuthCodeId(responseDTO.getAuthCode());
-    f4AuthCode.setAccessTokenId(responseDTO.getAccessToken());
-    f4AuthCode.setStateCode(UUID.randomUUID().toString());
-    f4AuthCode.setApiTranId(UUID.randomUUID().toString());
-    f4AuthCodeRepository.save(f4AuthCode);
+    try {
+      F4AuthCode f4AuthCode = new F4AuthCode();
+      f4AuthCode.setAuthCodeId(responseDTO.getAuthCode());
+      f4AuthCode.setAccessTokenId(responseDTO.getAccessToken());
+      f4AuthCode.setStateCode(UUID.randomUUID().toString());
+      f4AuthCode.setApiTranId(UUID.randomUUID().toString());
+      f4AuthCodeRepository.save(f4AuthCode);
+    } catch (DataIntegrityViolationException e) {
+      throw new RuntimeException("Duplicate auth code or access token", e);
+    }
   }
 
   public String getAccessTokenByCustomerId(String customerId) {
