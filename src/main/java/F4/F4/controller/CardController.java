@@ -1,5 +1,6 @@
 package F4.F4.controller;
 
+import F4.F4.dto.CardCustomerApprovalDTO;
 import F4.F4.dto.CustomerCardInfoDTO;
 import F4.F4.entity.F4Customer;
 import F4.F4.service.CardService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -30,6 +32,21 @@ public class CardController {
         } catch (Exception e) {
             System.out.println("getCustomerCardsList Failed to get" + e);
         }
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/card-approval")
+    public ResponseEntity<List<CardCustomerApprovalDTO>> getCardApprovalList(
+            @RequestParam("customer-card-id") String customerCardId
+    ){
+        List<CardCustomerApprovalDTO> response = null;
+        try{
+            response = cardService.getCustomerApproval(customerCardId);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
         return ResponseEntity.ok(response);
     }
 

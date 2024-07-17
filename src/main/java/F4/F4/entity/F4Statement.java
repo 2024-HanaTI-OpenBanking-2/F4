@@ -24,4 +24,5 @@ public class F4Statement {
 
   @Column(name = "transaction_type", length = 255)
   private String transactionType;
+
 }
