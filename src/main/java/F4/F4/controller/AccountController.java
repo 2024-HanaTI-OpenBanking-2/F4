@@ -34,8 +34,6 @@ public class AccountController {
   private F4AuthService authService;
 
 
-  private RestTemplate restTemplate;
-
   @GetMapping("/accountinfo")
   public String getAccountInfo(HttpServletRequest request, Model model) {
     System.out.println("in the accountinfo");
