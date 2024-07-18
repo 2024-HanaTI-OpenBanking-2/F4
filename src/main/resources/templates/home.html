@@ -41,11 +41,12 @@
 <!--          <form onsubmit="sendAPIRequest(); return false;">-->
 <!--            <button type="submit" id="authenticateLink" class="overlap-5 box-shadow text-wrapper-10">오픈 뱅킹 이용하기</button>-->
 <!--          </form>-->
-        <div class="overlap-5 box-shadow">
+        <div class="overlap-5 box-shadow" id="authenticateLink">
           <a class="move-login" href="/request-auth-code">
             <div class="text-wrapper-10">오픈 뱅킹 서비스 가입하기</div>
           </a>
         </div>
+<!--        <a th:href="@{/accountinfo}" class="btn btn-primary">계좌 정보 조회</a>-->
         </div>
       </div>
 

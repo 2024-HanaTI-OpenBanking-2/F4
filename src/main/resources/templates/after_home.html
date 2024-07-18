@@ -24,7 +24,15 @@
             <div class="swiper-slide swiper-container">
               <div class="swiper-content box-shadow-2">
                 <p>계좌 조회</p>
-                <div class="swiper-bank-content box-shadow">
+                <div th:if="${combinedAccountInfo}" class="swiper-bank-content box-shadow">
+                  <ul>
+                    <li th:each="account : ${combinedAccountInfo.bankAccounts}">
+                      Account Number: <span th:text="${account.accountNum}"></span>,
+                      Account Name: <span th:text="${account.accountName}"></span>
+                      Balance: <span th:text="${account.balance}"></span>
+                      BankCodeStd: <span th:text="${account.bankCodeStd}"></span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -70,8 +78,8 @@
         </div>
       </div>
       <div class="button-title">
-        <!--        <div class="customer-1" th:text="${customer.name} + '님의'"></div>-->
-        <div class="customer-1">최준혁님의</div>
+        <div class="customer-1" th:text="${customer.name} + '님의'"></div>
+<!--        <div class="customer-1">최준혁님의</div>-->
         <div class="customer-2">금융 정보</div>
       </div>
       <div class="menu_container">
