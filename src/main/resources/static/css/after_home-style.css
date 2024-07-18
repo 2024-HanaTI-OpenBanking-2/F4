@@ -105,7 +105,31 @@
   position: absolute;
   top: 100px;
   left: 50px;
+  overflow-y: auto; /* 스크롤바 추가 */
+  padding: 20px;
 }
+
+.account-item {
+  height: 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.account-details {
+  display: none; /* 숨김 처리 */
+  margin-top: 10px;
+}
+.account-number {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.account-number:hover {
+  color: #007bff;
+}
+
 
 p {
   font-weight: 500;

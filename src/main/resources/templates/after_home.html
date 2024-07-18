@@ -26,11 +26,15 @@
                 <p>계좌 조회</p>
                 <div th:if="${combinedAccountInfo}" class="swiper-bank-content box-shadow">
                   <ul>
-                    <li th:each="account : ${combinedAccountInfo.bankAccounts}">
-                      Account Number: <span th:text="${account.accountNum}"></span>,
-                      Account Name: <span th:text="${account.accountName}"></span>
-                      Balance: <span th:text="${account.balance}"></span>
-                      BankCodeStd: <span th:text="${account.bankCodeStd}"></span>
+                    <li th:each="account : ${combinedAccountInfo.bankAccounts}" class="account-item" onclick="toggleDetails(this)">
+                      <span class="account-number">
+                        Account Number: <span th:text="${account.accountNum}"></span>
+                      </span>
+                      <div class="account-details">
+                        Account Name: <span th:text="${account.accountName}"></span><br>
+                        Balance: <span th:text="${account.balance}"></span><br>
+                        BankCodeStd: <span th:text="${account.bankCodeStd}"></span>
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -39,7 +43,7 @@
             <div class="swiper-slide swiper-container">
               <div class="swiper-content box-shadow-2">
                 <p>카드 조회</p>
-                <div class="swiper-bank-content box-shadow">
+                <div th:if="${combinedAccountInfo}" class="swiper-bank-content box-shadow">
                 </div>
               </div>
             </div>
@@ -79,17 +83,20 @@
       </div>
       <div class="button-title">
         <div class="customer-1" th:text="${customer.name} + '님의'"></div>
-<!--        <div class="customer-1">최준혁님의</div>-->
+        <!--        <div class="customer-1">최준혁님의</div>-->
         <div class="customer-2">금융 정보</div>
       </div>
       <div class="menu_container">
         <div class="row-container">
-          <div class="bank_container box-shadow" data-slide="0">은행<img src="img/piggy-bank.png"></div>
+          <div class="bank_container box-shadow" data-slide="0">은행<img src="img/piggy-bank.png">
+          </div>
           <div class="card_container box-shadow" data-slide="1">카드<img src="img/atm-card.png"></div>
         </div>
         <div class="row-container">
-          <div class="investment_container box-shadow" data-slide="2">증권<img src="img/financial-profit.png"></div>
-          <div class="insurance_container box-shadow" data-slide="3">보험<img src="img/insurance.png"></div>
+          <div class="investment_container box-shadow" data-slide="2">증권<img
+              src="img/financial-profit.png"></div>
+          <div class="insurance_container box-shadow" data-slide="3">보험<img src="img/insurance.png">
+          </div>
         </div>
       </div>
       <span class="search material-symbols-outlined">search</span>
@@ -121,20 +128,29 @@
   });
 
   // Add event listener to menu items
-  document.querySelectorAll('.row-container div').forEach(function(item) {
-    item.addEventListener('click', function() {
+  document.querySelectorAll('.row-container div').forEach(function (item) {
+    item.addEventListener('click', function () {
       var slideIndex = parseInt(this.getAttribute('data-slide'));
       mySwiper.slideToLoop(slideIndex, 500); // Swiper uses 1-based index for slideToLoop
 
       // 버튼 클릭 시 모션 추가
-      document.querySelectorAll('.row-container div').forEach(function(elem) {
+      document.querySelectorAll('.row-container div').forEach(function (elem) {
         elem.classList.remove('active');
       });
       item.classList.add('active');
     });
   });
 </script>
-
+<script>
+  function toggleDetails(element) {
+    var details = element.querySelector('.account-details');
+    if (details.style.display === "none" || details.style.display === "") {
+      details.style.display = "block";
+    } else {
+      details.style.display = "none";
+    }
+  }
+</script>
 <script>
   document.getElementById('authenticateLink').addEventListener('click', function (e) {
     e.preventDefault();
@@ -146,7 +162,7 @@
     var popup = window.open('/show-send-form', 'Authenticate', windowFeatures);
 
     // 팝업 창이 닫혔는지 확인하는 함수
-    var checkPopupClosed = setInterval(function() {
+    var checkPopupClosed = setInterval(function () {
       if (popup && popup.closed) {
         clearInterval(checkPopupClosed);
         // 팝업이 닫혔을 때 처리할 작업을 여기에 작성
