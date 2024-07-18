@@ -4,6 +4,7 @@
   <meta charset="utf-8"/>
   <link rel="stylesheet" th:href="@{/css/home.css}"/>
   <link rel="stylesheet" href="/css/global-style.css/">
+  <link rel="stylesheet" href="/css/after_home-style.css/">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
@@ -32,25 +33,12 @@
           <div class="swiper-button-next"></div>
         </div>
       </div>
-      <div class="text-wrapper-4" th:text="${customer.name} + '님 안녕하세요'">Customer greeting</div>
-      <div class="overlap-3">
-        <img src="img/character-2-2.png"/>
-        <div class="text-wrapper-20-1">서비스를 이용하기 위해서</div>
-        <div class="text-wrapper-20-1">오픈뱅킹 가입을 먼저 해 주세요.</div>
-        <span class="material-symbols-outlined">keyboard_arrow_down</span>
-<!--          <form onsubmit="sendAPIRequest(); return false;">-->
-<!--            <button type="submit" id="authenticateLink" class="overlap-5 box-shadow text-wrapper-10">오픈 뱅킹 이용하기</button>-->
-<!--          </form>-->
-        <div class="overlap-5 box-shadow">
-          <a class="move-login" href="/request-auth-code">
-            <div class="text-wrapper-10">오픈 뱅킹 서비스 가입하기</div>
-          </a>
-        </div>
-        </div>
-      </div>
 
       <img class="line" src="img/line-1.svg"/>
       <div class="overlap-4">
+<!--        <a href="/transfer" th:href="@{/transfer}">-->
+<!--          <div class="account-transfer">계좌 이체</div>-->
+<!--        </a>-->
         <div class="overlap-group-wrapper">
           <div class="div-wrapper box-shadow">
             <!-- Logout link with Thymeleaf -->
@@ -58,6 +46,27 @@
               <a class="logout" th:href="@{/logout}" th:text="'로그아웃'">Logout</a>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="overlap-5-1">
+        <a th:href="@{/request-auth-code}"> 토큰발급</a>.
+        <br>
+        <a th:href="@{/accountinfo}">계좌통합조회</a>
+        <br>
+        <a th:href="@{/card/card-list}">카드목록조회</a>
+        <br>
+        <a th:href="@{/card/card-approval?customer-card-id=1111-1111-1111-1111}">카드 사용 내역 조회 1111-1111-1111-1111</a>
+        <a th:href="@{/insurance}">보험 조회</a>
+      </div>
+
+      <div class="menu_container">
+        <div class="row-container">
+          <div class="bank_container"></div>
+          <div class="card_contianer"></div>
+        </div>
+        <div class="row-container">
+          <div class="investment_container"></div>
+          <div class="insurance_contianer"></div>
         </div>
       </div>
       <span class="search material-symbols-outlined">search</span>

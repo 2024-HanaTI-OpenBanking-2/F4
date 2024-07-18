@@ -19,12 +19,14 @@
 .element .overlap {
   position: absolute;
   width: 809px;
-  height: 1022px;
+  height: 98vh;
   top: 0;
   left: 0;
-  background-color: #d9d9d9;
+  /*background-color: #d9d9d9;*/
+  background-color: #cee9e0;
   border-top-right-radius: 50px;  /* Rounds the top right corner */
   border-bottom-right-radius: 50px;  /* Rounds the bottom right corner */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .element .ellipse {
@@ -52,8 +54,6 @@
   width: 139px;
   top: 21px;
   left: 90px;
-  font-family: "Inter-Bold", Helvetica;
-  font-weight: 700;
   color: #000000;
   font-size: 36px;
   letter-spacing: 0;
@@ -74,8 +74,6 @@
   width: 58px;
   top: 316px;
   left: 258px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
   color: #000000;
   font-size: 16px;
   letter-spacing: 0;
@@ -126,23 +124,27 @@
 
 .element .overlap-3 {
   position: absolute;
-  width: 447px;
-  height: 217px;
-  top: 398px;
-  left: 900px;
-  background-color: #d9d9d9;
+  /* width: 200px; */
+  height: 300px;
+  top: 350px;
+  left: 1000px;
+  /* text-align: center; */
+  /* background-color: #d9d9d9; */
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .element .text-wrapper-3 {
   position: absolute;
   width: 300px;
-  top: 4px;
-  left: 25px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
-  color: #000000;
-  font-size: 16px;
+  top: 40px;
+  left: 50px;
+  font-weight: 700;
+  color: #085643;
+  font-size: 40px;
   letter-spacing: 0;
   line-height: normal;
 }
@@ -160,14 +162,13 @@
 .element .text-wrapper-4 {
   position: absolute;
   width: 300px;
-  top: 4px;
-  left: -250px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
+  top: 300px;
+  left: 900px;
   color: #000000;
-  font-size: 16px;
+  font-size: 30px;
   letter-spacing: 0;
   line-height: normal;
+  font-weight: 500;
 }
 
 .element .text-wrapper-5 {
@@ -175,8 +176,6 @@
   position: absolute;
   width: 45px;
   top: 24px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
   color: #000000;
   font-size: 20px;
   letter-spacing: 0;
@@ -188,8 +187,6 @@
   position: absolute;
   width: 45px;
   top: 24px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
   color: #000000;
   font-size: 20px;
   letter-spacing: 0;
@@ -201,8 +198,6 @@
   position: absolute;
   width: 45px;
   top: 24px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
   color: #000000;
   font-size: 20px;
   letter-spacing: 0;
@@ -214,8 +209,6 @@
   position: absolute;
   width: 45px;
   top: 24px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
   color: #000000;
   font-size: 20px;
   letter-spacing: 0;
@@ -240,48 +233,43 @@
 }
 
 .element .overlap-group-wrapper {
-  position: absolute;
+  /*position: absolute;*/
   width: 92px;
   height: 24px;
-  top: 0;
-  left: 0;
+  /*top: 26px;*/
+  /*left: 1250px;*/
 }
-
 .element .div-wrapper {
   position: relative;
   width: 90px;
   height: 24px;
-  background-color: #d9d9d9;
+  background-color: #0f8165;
   border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .element .text-wrapper-9 {
-  position: absolute;
-  width: 60px;
-  top: 4px;
-  left: 25px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
-  color: #000000;
+  /* position: absolute; */
+  /* width: 60px; */
+  /* top: 4px; */
+  /* left: 25px; */
+  color: #ffffff;
   font-size: 15px;
   letter-spacing: 0;
   line-height: normal;
+  text-align: center;
 
 }
 .text-wrapper-9 .logout{
   text-decoration: none;
-  color: #000000;
+  color: #ffffff;
 }
 
 .element .text-wrapper-10 {
-  position: absolute;
-  width: 59px;
-  top: 4px;
-  left: 16px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
-  color: #000000;
-  font-size: 15px;
+  color: #ffffff;
+  font-size: 20px;
   letter-spacing: 0;
   line-height: normal;
 }
@@ -291,8 +279,6 @@
   width: 407px;
   top: 875px;
   left: 926px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
   color: #000000;
   font-size: 13px;
   text-align: center;
@@ -301,13 +287,27 @@
 }
 
 .element .overlap-5 {
-  position: absolute;
   width: 288px;
   height: 68px;
-  top: 664px;
-  left: 984px;
-  background-color: #d9d9d9;
+  /* top: 664px; */
+  /* left: 984px; */
+  background-color: rgb(14, 114, 114);
   border-radius: 20px;
+  border: none;
+}
+
+.overlap-5 .text-wrapper-10{
+  position: absolute;
+  width: 100%;
+  top: 247px;
+  left: 35px;
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.overlap-5:hover {
+  background-color: darkseagreen; /* 호버 시 글자색 변경 */
 }
 
 .element .text-wrapper-11 {
@@ -315,8 +315,6 @@
   width: 201px;
   top: 24px;
   left: 76px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
   color: #000000;
   font-size: 16px;
   letter-spacing: 0;
@@ -413,8 +411,6 @@
   text-decoration: none;
   cursor: pointer;
   border-radius: 15px;
-  font-family: "Inter-Regular", Helvetica;
-  font-weight: 400;
   color: #000000;
   font-size: 16px;
   letter-spacing: 0;
@@ -422,4 +418,9 @@
 
 .account-transfer:hover {
   background-color: #333333; /* 호버 시 배경색 변경 */
+}
+
+.text-wrapper-20-1 {
+  font-size: 15px;
+  color: #8d8d8d;
 }

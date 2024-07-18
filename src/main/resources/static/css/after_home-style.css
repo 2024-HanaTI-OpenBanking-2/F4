@@ -1,0 +1,29 @@
+.menu_container {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  left: 910px;
+  top: 250px;
+  position: absolute;
+}
+
+.row-container {
+  width: 500px;
+  height: 250px;
+  background-color: #085643;
+  border: white solid;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.bank_container,
+.card_contianer,
+.investment_container,
+.insurance_contianer {
+  background-color: white;
+  width: 240px;
+  height: 240px;
+}
