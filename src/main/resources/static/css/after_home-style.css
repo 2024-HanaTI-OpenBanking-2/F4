@@ -1,6 +1,6 @@
 .menu_container {
-  width: 500px;
-  height: 500px;
+  width: 520px;
+  height: 520px;
   display: flex;
   flex-direction: column;
   left: 910px;
@@ -9,21 +9,181 @@
 }
 
 .row-container {
-  width: 500px;
-  height: 250px;
-  background-color: #085643;
-  border: white solid;
+  width: 520px;
+  height: 260px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
 
-.bank_container,
-.card_contianer,
-.investment_container,
-.insurance_contianer {
-  background-color: white;
+.bank_container {
+  background-color: #0f8165;
+  border-radius: 20px;
   width: 240px;
   height: 240px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.card_container {
+  background-color: #ffffff;
+  border: #0f8165 solid 5px;
+  border-radius: 20px;
+  width: 230px;
+  height: 230px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.investment_container {
+  background-color: #ffffff;
+  border: #0f8165 solid 5px;
+  border-radius: 20px;
+  width: 230px;
+  height: 230px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.insurance_container {
+  background-color: #0f8165;
+  border-radius: 20px;
+  width: 240px;
+  height: 240px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.bank_container img,
+.card_container img,
+.investment_container img,
+.insurance_container img {
+  height: 150px;
+}
+
+.swiper-content {
+  height: 600px !important;
+  width: 500px !important;
+  background-color: #009178;
+  position: absolute;
+  top: 100px;
+  left: 75px;
+}
+
+.swiper-bank-content {
+  width: 400px;
+  height: 450px;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  top: 100px;
+  left: 50px;
+}
+
+p {
+  font-weight: 500;
+  font-size: 30px;
+  text-align: left;
+  position: absolute;
+  left: 50px;
+  top: 15px;
+  color: white;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #fff; /* 원하는 색상으로 변경 */
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: #ccc; /* 호버 시 색상 변경 */
+}
+
+.menu {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 26px;
+  left: 1390px;
+}
+
+.button-title {
+  left: 920px;
+  width: 520px;
+  height: 200px;
+  display: flex;
+  position: absolute;
+  top: 120px;
+  flex-direction: column;
+}
+
+.customer-1 {
+  font-size: 40px;
+}
+
+.customer-2 {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.box-shadow-2 {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Swiper Pagination Customization */
+.swiper-pagination-bullet {
+  background-color: #ccc; /* 기본 색상 */
+  opacity: 1; /* 기본 불릿의 투명도 */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #000; /* 활성화된 색상 */
+}
+
+/* Button Click Animation */
+.bank_container.active,
+.card_container.active,
+.investment_container.active,
+.insurance_container.active {
+  animation: button-click 0.2s ease;
+}
+
+@keyframes button-click {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
