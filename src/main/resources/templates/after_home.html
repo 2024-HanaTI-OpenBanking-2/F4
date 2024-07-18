@@ -21,20 +21,49 @@
         </a>
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
+            <!--클릭 할 때마다 새로고침 -> controller에 보내기-->
             <div class="swiper-slide swiper-container">
               <div class="swiper-content box-shadow-2">
                 <p>계좌 조회</p>
                 <div th:if="${combinedAccountInfo}" class="swiper-bank-content box-shadow">
                   <ul>
-                    <li th:each="account : ${combinedAccountInfo.bankAccounts}" class="account-item" onclick="toggleDetails(this)">
+                    <li th:each="account : ${combinedAccountInfo.bankAccounts}" class="account-item" th:data-accountnum="${account.accountNum}" onclick="toggleDetails(this)">
                       <span class="account-number">
                         Account Number: <span th:text="${account.accountNum}"></span>
                       </span>
-                      <div class="account-details">
+                      <div class="account-details" style="display: none;">
                         Account Name: <span th:text="${account.accountName}"></span><br>
                         Balance: <span th:text="${account.balance}"></span><br>
                         BankCodeStd: <span th:text="${account.bankCodeStd}"></span>
+                        <div class="transactions"></div> <!-- 거래 내역을 표시할 div 추가 -->
                       </div>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+            <div class="swiper-slide swiper-container">
+              <div class="swiper-content box-shadow-2">
+                <p>카드 조회</p>
+                <div class="swiper-card-content box-shadow" id="card-list">
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide swiper-container">
+              <div class="swiper-content box-shadow-2">
+                <p>증권 조회</p>
+                <div th:if="${combinedAccountInfo}" class="swiper-stock-content box-shadow">
+                  <ul>
+                    <li th:each="stock : ${combinedAccountInfo.stockAccounts}" class="stock-item">
+                      <span class="account-number">
+                        Account Number: <span th:text="${stock.accountNumber}"></span>
+
+                        financialCompany: <span th:text="${stock.financialCompany}"></span><br>
+                        cash: <span th:text="${stock.cash}"></span><br>
+                        totalAssets: <span th:text="${stock.totalAssets}"></span>
+                        <div class="transactions"></div> <!-- 거래 내역을 표시할 div 추가 -->
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -42,22 +71,20 @@
             </div>
             <div class="swiper-slide swiper-container">
               <div class="swiper-content box-shadow-2">
-                <p>카드 조회</p>
-                <div th:if="${combinedAccountInfo}" class="swiper-bank-content box-shadow">
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide swiper-container">
-              <div class="swiper-content box-shadow-2">
-                <p>증권 조회</p>
-                <div class="swiper-bank-content box-shadow">
-                </div>
-              </div>
-            </div>
-            <div class="swiper-slide swiper-container">
-              <div class="swiper-content box-shadow-2">
                 <p>보험 조회</p>
-                <div class="swiper-bank-content box-shadow">
+                <div class="swiper-insurance-content box-shadow" id="insurance-list">
+<!--                  <ul>-->
+<!--                    <li th:each="insurance : ${insuranceList}" class="account-item">-->
+<!--                      <span class="insurance-name">-->
+<!--                        Insurance Name: <span th:text="${insurance.insuranceName}"></span>-->
+<!--                      </span>-->
+<!--                      <div class="insurance-details">-->
+<!--                        Start Date: <span th:text="${insurance.startDate}"></span><br>-->
+<!--                        Expiry Date: <span th:text="${insurance.expiryDate}"></span><br>-->
+<!--                      </div>-->
+<!--                    </li>-->
+<!--                  </ul>-->
+
                 </div>
               </div>
             </div>
@@ -109,22 +136,11 @@
 <script>
   var mySwiper = new Swiper('.mySwiper', {
     loop: true,
-    // pagination: {
-    //   el: '.swiper-pagination',
-    //   clickable: true, // Pagination 클릭 가능
-    //   // renderBullet: function (index, className) {
-    //   //   return '<span class="' + className + '">' + (index + 1) + '</span>';
-    //   // },
-    // },
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-    mousewheel: true,
     keyboard: true,
-    // autoplay: {
-    //   delay: 2000,
-    // },
   });
 
   // Add event listener to menu items
@@ -138,19 +154,106 @@
         elem.classList.remove('active');
       });
       item.classList.add('active');
+
+      // 보험 컨테이너를 클릭했을 때 보험 정보를 가져옴
+      if (slideIndex === 3) { // '보험' 컨테이너의 data-slide 값이 3이라 가정
+        fetchInsuranceData();
+      } else if (slideIndex === 1) {
+        fetchCardData();
+      }
     });
   });
+
+  function fetchCardData() {
+    fetch('/card/card-list')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      var cardListDiv = document.getElementById('card-list');
+      cardListDiv.innerHTML = ''; // 기존 내용을 초기화
+      data.forEach(card => {
+        var cardHtml = `
+          <div class="card-item">
+            customerCardId: ${card.customerCardId}<br>
+            cardName: ${card.cardName}<br>
+            expirationDate: ${card.expirationDate}<br>
+          </div>
+        `;
+        cardListDiv.innerHTML += cardHtml;
+      });
+    })
+    .catch(error => console.error('Error fetching insurance data:', error));
+  }
+  function fetchInsuranceData() {
+    fetch('/insurance')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      var insuranceListDiv = document.getElementById('insurance-list');
+      insuranceListDiv.innerHTML = ''; // 기존 내용을 초기화
+      data.forEach(insurance => {
+        var insuranceHtml = `
+          <div class="insurance-item">
+            insuranceName: ${insurance.insuranceName}<br>
+            startDate: ${insurance.startDate}<br>
+            expiryDate: ${insurance.expiryDate}<br>
+          </div>
+        `;
+        insuranceListDiv.innerHTML += insuranceHtml;
+      });
+    })
+    .catch(error => console.error('Error fetching insurance data:', error));
+  }
 </script>
 <script>
   function toggleDetails(element) {
     var details = element.querySelector('.account-details');
+    var accountNum = element.getAttribute('data-accountnum');
     if (details.style.display === "none" || details.style.display === "") {
+      console.log(accountNum);
       details.style.display = "block";
+      fetchTransactions(accountNum, element);
     } else {
       details.style.display = "none";
     }
   }
+
+  function fetchTransactions(accountNum, element) {
+    fetch('/account/transaction_list/acnt_num?accountNum=' + accountNum)
+    .then(response => response.json())
+    .then(data => {
+      var transactionsDiv = element.querySelector('.transactions');
+      transactionsDiv.innerHTML = ''; // 기존 내용을 초기화
+      data.forEach(transaction => {
+        var transactionHtml = `
+            <div class="transaction-item">
+              Transaction No: ${transaction.transactionNo}<br>
+              Amount: ${transaction.amount}<br>
+              Date: ${transaction.tranDate}<br>
+              Type: ${transaction.transactionType}<br>
+              Time: ${transaction.tranTime}<br>
+              In/Out: ${transaction.inoutType}<br>
+              Content: ${transaction.printContent}<br>
+              Amount: ${transaction.tranAmt}<br>
+              Balance After: ${transaction.afterBalanceAmt}<br>
+              Branch: ${transaction.branchName}<br>
+            </div>
+          `;
+        transactionsDiv.innerHTML += transactionHtml;
+      });
+    })
+    .catch(error => console.error('Error fetching transactions:', error));
+  }
 </script>
+
 <script>
   document.getElementById('authenticateLink').addEventListener('click', function (e) {
     e.preventDefault();

@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 public class TransactionService {
   private final RestTemplate restTemplate = new RestTemplate();
   public List<BankStatementDTO> getBankTransactionList(TransactionDTO transactionDTO) {
-    String bankUrl = "http://localhost:8080/account/transaction_list/acnt_num";
+    String bankUrl = "http://43.201.6.25:8083/account/transaction_list/acnt_num";
     AccountNumDTO accountNumDTO = new AccountNumDTO(transactionDTO.getAccountNum());
     List<BankStatementDTO> bankResult = List.of(
         restTemplate.postForObject(bankUrl, accountNumDTO, BankStatementDTO[].class));
