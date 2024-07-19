@@ -19,6 +19,7 @@ public class InsuranceController {
 
   @Autowired
   private InsuranceService insuranceService;
+
   @Autowired
   private F4AuthService authService;
 
