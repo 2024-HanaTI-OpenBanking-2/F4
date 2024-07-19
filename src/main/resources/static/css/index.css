@@ -1,0 +1,383 @@
+.element {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%; /* 전체 폭을 화면에 맞춤 */
+  margin: 0; /* 여백 제거 */
+  padding: 0; /* 내부 여백 제거 */
+}
+
+.element .div {
+  background-color: #ffffff;
+  width: 100%; /* 내부 div 역시 전체 폭에 맞춤 */
+  height: 1024px;
+  position: relative;
+  margin: 0 auto; /* 가운데 정렬을 위해 추가 */
+}
+
+.element .overlap {
+  position: absolute;
+  width: 809px;
+  height: 98vh;
+  top: 0;
+  left: 0;
+  /*background-color: #d9d9d9;*/
+  background-color: #cee9e0;
+  border-top-right-radius: 50px;  /* Rounds the top right corner */
+  border-bottom-right-radius: 50px;  /* Rounds the bottom right corner */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.element .ellipse {
+  left: 178px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 866px;
+  background-color: #00000033;
+  border-radius: 10px;
+}
+
+.element .ellipse-2 {
+  left: 147px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 866px;
+  background-color: #00000033;
+  border-radius: 10px;
+}
+
+.element .text-wrapper {
+  position: absolute;
+  width: 139px;
+  top: 21px;
+  left: 90px;
+  font-family: "Inter-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 36px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .overlap-group {
+  position: absolute;
+  width: 573px;
+  height: 658px;
+  top: 172px;
+  left: 147px;
+  background-color: #00000033;
+}
+
+.element .text-wrapper-2 {
+  position: absolute;
+  width: 58px;
+  top: 316px;
+  left: 258px;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .ellipse-3 {
+  left: 116px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 866px;
+  background-color: #00000033;
+  border-radius: 10px;
+}
+
+.element .overlap-2 {
+  position: absolute;
+  width: 44px;
+  height: 24px;
+  top: 864px;
+  left: 241px;
+}
+
+.element .chevron-right {
+  left: 20px;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0;
+}
+
+.element .chevron-left {
+  left: 0;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 0;
+}
+
+.element .pause {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 864px;
+  left: 209px;
+}
+
+.element .overlap-3 {
+  position: absolute;
+  /* width: 200px; */
+  height: 400px;
+  top: 250px;
+  left: 900px;
+  /* text-align: center; */
+  /* background-color: #d9d9d9; */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.center {
+  display: flex;
+  justify-content: center; /* 가로축 중앙 정렬 */
+  align-items: center; /* 세로축 중앙 정렬 */
+  height: 100%; /* 이 속성은 .center가 특정 높이를 가지고 있어야 합니다 */
+}
+
+.element .text-wrapper-3-1 {
+  /* position: absolute; */
+  width: 500px;
+  /* top: 40px; */
+  /* left: 50px; */
+  font-weight: 400;
+  color: black;
+  font-size: 30px;
+  letter-spacing: -1.5px;
+  /* line-height: normal; */
+}
+
+.element .text-wrapper-4 {
+  position: absolute;
+  width: 300px;
+  top: 4px;
+  left: -250px;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .text-wrapper-5 {
+  left: 912px;
+  position: absolute;
+  width: 45px;
+  top: 24px;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .text-wrapper-6 {
+  left: 1152px;
+  position: absolute;
+  width: 45px;
+  top: 24px;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .text-wrapper-7 {
+  left: 1072px;
+  position: absolute;
+  width: 45px;
+  top: 24px;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .text-wrapper-8 {
+  left: 992px;
+  position: absolute;
+  width: 45px;
+  top: 24px;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .line {
+  position: absolute;
+  width: 445px;
+  height: 2px;
+  top: 844px;
+  left: 900px;
+  object-fit: cover;
+}
+
+.element .overlap-4 {
+  position: absolute;
+  width: 92px;
+  height: 24px;
+  top: 28px;
+  left: 1255px;
+}
+
+.element .overlap-group-wrapper {
+  position: absolute;
+  width: 92px;
+  height: 24px;
+  top: 26px;
+  left: 1250px;
+}
+
+.element .div-wrapper {
+  position: relative;
+  width: 90px;
+  height: 24px;
+  background-color: #0f8165;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.element .text-wrapper-9 {
+  /* position: absolute; */
+  /* width: 60px; */
+  /* top: 4px; */
+  /* left: 25px; */
+  color: #ffffff;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  text-align: center;
+
+}
+.text-wrapper-9 .logout{
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.element .text-text-text-text {
+  position: absolute;
+  width: 407px;
+  top: 875px;
+  left: 926px;
+  color: #000000;
+  font-size: 13px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.element .overlap-5 {
+  width: 288px;
+  height: 68px;
+  /* top: 664px; */
+  /* left: 984px; */
+  background-color: rgb(14, 114, 114);
+  border-radius: 20px;
+}
+
+.element .text-wrapper-11 {
+  position: absolute;
+  width: 201px;
+  top: 24px;
+  left: 76px;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.element .align-justify {
+  position: absolute;
+  width: 26px;
+  height: 28px;
+  top: 24px;
+  left: 1395px;
+}
+
+.element .search {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 26px;
+  left: 1358px;
+}
+
+.overlap-5 .text-wrapper-10{
+  position: absolute;
+  /* width: 100%; */
+  top: 345px;
+  left: 140px;
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+.overlap-5:hover {
+  background-color: darkseagreen; /* 호버 시 글자색 변경 */
+}
+
+/*homeslider*/
+
+
+/*오픈뱅킹 이용하기 버튼 css*/
+.apiButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  width: 288px;
+  height: 68px;
+}
+
+.apiButton:hover {
+  background-color: #45a049;
+}
+/*오픈뱅킹 이용하기 버튼 css 끝*/
+
+.overlap-4 .account-transfer {
+  position: absolute;
+  left: -110px;
+  top: -5px;
+}
+
+.account-transfer {
+  display: inline-block; /* 또는 필요에 따라 'block' 등으로 설정 */
+  padding: 5px 5px;
+  background-color: #f2f2f2;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 15px;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.account-transfer:hover {
+  background-color: #333333; /* 호버 시 배경색 변경 */
+}
+
+.text-wrapper-20 {
+  font-size: 20px;
+  color: #8d8d8d;
+}
+
+.text-wrapper-20-1 {
+  font-size: 15px;
+  color: #8d8d8d;
+}

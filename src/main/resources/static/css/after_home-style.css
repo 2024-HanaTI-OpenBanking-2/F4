@@ -1,0 +1,333 @@
+.menu_container {
+  width: 520px;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  left: 910px;
+  top: 250px;
+  position: absolute;
+}
+
+.row-container {
+  width: 520px;
+  height: 260px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.bank_container {
+  background-color: #0f8165;
+  border-radius: 20px;
+  width: 240px;
+  height: 240px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.card_container {
+  background-color: #ffffff;
+  border: #0f8165 solid 5px;
+  border-radius: 20px;
+  width: 230px;
+  height: 230px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.investment_container {
+  background-color: #ffffff;
+  border: #0f8165 solid 5px;
+  border-radius: 20px;
+  width: 230px;
+  height: 230px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.insurance_container {
+  background-color: #0f8165;
+  border-radius: 20px;
+  width: 240px;
+  height: 240px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 400;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.bank_container img,
+.card_container img,
+.investment_container img,
+.insurance_container img {
+  height: 150px;
+}
+
+.swiper-content {
+  height: 630px !important;
+  width: 550px !important;
+  background-color: #009178;
+  position: absolute;
+  top: 40px;
+  left: 50px;
+  border-radius: 20px;
+}
+
+.account-item,
+.card-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 5px;
+  /*height: 50px;*/
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.stock-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 5px;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.insurance-item {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 5px;
+  /* height: 50px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-details,
+.card-details {
+  display: none;
+  margin-top: 10px;
+  /* padding: 10px; */
+  border-top: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.transaction-item {
+  padding: 10px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+p {
+  font-weight: 500;
+  font-size: 30px;
+  text-align: left;
+  position: absolute;
+  left: 55px;
+  top: 15px;
+  color: white;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #fff; /* 원하는 색상으로 변경 */
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: #ccc; /* 호버 시 색상 변경 */
+}
+
+.menu {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 26px;
+  left: 1390px;
+}
+
+.button-title {
+  left: 920px;
+  width: 520px;
+  height: 200px;
+  display: flex;
+  position: absolute;
+  top: 120px;
+  flex-direction: column;
+}
+
+.customer-1 {
+  font-size: 40px;
+}
+
+.customer-2 {
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.box-shadow-2 {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Swiper Pagination Customization */
+.swiper-pagination-bullet {
+  background-color: #ccc; /* 기본 색상 */
+  opacity: 1; /* 기본 불릿의 투명도 */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #000; /* 활성화된 색상 */
+}
+
+/* Button Click Animation */
+.bank_container.active,
+.card_container.active,
+.investment_container.active,
+.insurance_container.active {
+  animation: button-click 0.2s ease;
+}
+
+@keyframes button-click {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.swiper-bank-content,
+.swiper-insurance-content,
+.swiper-card-content,
+.swiper-stock-content {
+  width: 400px;
+  height: 450px;
+  border-radius: 20px;
+  background-color: white;
+  position: absolute;
+  top: 100px;
+  left: 55px;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.account-number,
+.card-number {
+  width: 180px;
+  text-align: left;
+}
+
+.card-number {
+  margin-top: 5px;
+}
+
+.account-balance,
+.expiration-date{
+  width: 167px;
+  text-align: right;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.expiration-date {
+  width: 167px;
+  text-align: right;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.material-symbols-outlined {
+  width: 20px;
+  text-align: right;
+  /* padding-right: 13px; */
+  margin-right: 13px;
+}
+
+.account-name,
+.card-name {
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.card-name {
+  text-align: left;
+}
+
+.transaction-out {
+  color: blue;
+}
+
+.transaction-in {
+  color: red;
+}
+
+.insuranceStatus-active {
+  /* border: solid blue; */
+  border-radius: 10px;
+  background: blue;
+  color: white;
+  /* width: 30px; */
+  /* display: flex; */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.insuranceStatus-inactive {
+  /* border: solid blue; */
+  border-radius: 10px;
+  background: #686868;
+  color: white;
+  /* width: 30px; */
+  /* display: flex; */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.payment-category {
+  border: #0f8165 solid 2px;
+  border-radius: 13px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 13px;
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/css/auth-complete.css">
+  <title>인증완료</title>
+</head>
+<body>
+<div class="popup-container">
+  <div class="popup">
+    <div class="popup-content">
+      <img src="/img/check-blue.png" alt="Check Icon">
+      <h2>본인인증을 완료하였습니다!</h2>
+      <p>아래 버튼을 눌러 기존 페이지로 돌아가주세요.</p>
+      <br>
+    </div>
+    <button id="homeButton" >홈으로</button>
+  </div>
+</div>
+
+
+
+<script>
+  var homeButton = document.getElementById('homeButton');
+
+  homeButton.addEventListener('click', function () {
+    // 부모 창의 URL을 변경하고 팝업 창을 닫습니다.
+    window.opener.postMessage("인증성공", "*");
+    window.close();
+  });
+</script>
+</body>
+</html>

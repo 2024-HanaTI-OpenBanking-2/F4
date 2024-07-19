@@ -1,0 +1,110 @@
+@font-face {
+  font-family: "Hana";
+  font-weight: 700;
+  src: url("/Hana2.0_OTF/Hana2-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "Hana";
+  font-weight: 500;
+  src: url("/Hana2.0_OTF/Hana2-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "Hana";
+  font-weight: 400;
+  src: url("/Hana2.0_OTF/Hana2-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "Hana";
+  font-weight: 300;
+  src: url("/Hana2.0_OTF/Hana2-Light.otf") format("opentype");
+}
+
+html {
+  font-family: "Hana" !important;
+}
+
+body {
+  background-color: #ffffff;
+  height: 1024px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.white {
+  color: white;
+}
+
+.logo {
+  font-weight: 700;
+  color: #085643;
+  font-size: 40px;
+}
+
+.logo-img {
+  position: absolute;
+  width: 300px;
+  top: 40px;
+  left: 50px;
+  font-weight: 700;
+  color: #085643;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+/*.text-wrapper-3:hover {*/
+/*  color: #333333; !* 호버 시 글자색 변경 *!*/
+/*}*/
+
+.logo-img img {
+  width: 300px;
+}
+
+.box-shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Buttons Customization */
+.swiper-button-prev, .swiper-button-next {
+  color: rgb(14,114,114) !important; /* White color for visibility */
+  width: 50px; /* Larger hit area */
+  height: 50px; /* Larger hit area */
+}
+
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  color: #ccc !important; /* Light grey on hover for feedback */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: rgb(14,114,114) !important; /* Black for active bullet */
+}
+
+/* Swiper Container Customization */
+.swiper {
+  width: 80%;  /* Adjust as necessary */
+  height: 80%; /* Adjust as necessary */
+  top: 100px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 500px;
+}
+
+.swiper-slide img {
+  width: 85%;
+  height: auto;
+  max-height: 100%;
+  position: absolute;
+  top: 20%;
+  left: 5%;
+}
