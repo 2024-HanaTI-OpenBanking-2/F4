@@ -13,6 +13,7 @@ import java.util.Map;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,9 @@ public class AuthController {
 
     @Autowired
     private F4AuthService authService;
+
+    @Value("${tokenresult.uri}")
+    private String tokenResultUri;
 
     @GetMapping("/show-send-form") // 본인 인증하기 버튼 클릭시
     public String showSend(HttpServletRequest request, Model model) {
@@ -62,8 +66,11 @@ public class AuthController {
         if (accessTokenResponse != null) {
             Map<String, String> response = new HashMap<>();
             // 배포시 실제 IP 주소로 변경하기
+//            response.put("redirectUrl",
+//                "http://43.203.242.167:8080/tokenResult?access_token=" + accessTokenResponse.getAccess_token()
+//                    + "&state=" + state + "&customer_id=" + customerId);
             response.put("redirectUrl",
-                "http://43.203.242.167:8080/tokenResult?access_token=" + accessTokenResponse.getAccess_token()
+                tokenResultUri + "/tokenResult?access_token=" + accessTokenResponse.getAccess_token()
                     + "&state=" + state + "&customer_id=" + customerId);
 
             return ResponseEntity.ok(response);
