@@ -31,10 +31,10 @@ public class InsuranceController {
     InsuranceDTO insuranceDTO = new InsuranceDTO(accessToken); // DTO 생성
 
     List<InsuranceResponseDTO> InsuranceList = insuranceService.requestInsuranceList(insuranceDTO); // 서비스 호출
-
+    HttpSession session = request.getSession();
+    model.addAttribute("customer", session.getAttribute("customer"));
     return ResponseEntity.ok(InsuranceList); // 결합된 계좌 정보 응답
   }
-
   public String getUserId(HttpServletRequest request, Model model) {
     HttpSession session = request.getSession(false); // 기존 세션 가져오기, 없으면 null 반환
     if (session != null) {

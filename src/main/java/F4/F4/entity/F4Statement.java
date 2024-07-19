@@ -25,4 +25,15 @@ public class F4Statement {
   @Column(name = "transaction_type", length = 255)
   private String transactionType;
 
+  @Column(name = "print_content", length = 255)
+  private String printContent;
+
+  @Column(name = "inout_type", length = 20)
+  private String inoutType;
+
+  @Column(name = "tran_amt", length = 255)
+  private String tranAmt;
+
+  @Column(name = "after_balance_amt", length = 255)
+  private String afterBalanceAmt;
 }

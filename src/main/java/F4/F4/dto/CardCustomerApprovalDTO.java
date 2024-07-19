@@ -11,11 +11,11 @@ import java.time.Instant;
 @NoArgsConstructor
 public class CardCustomerApprovalDTO {
     private String approvalNumber;
-    private Instant approvalDate;
-    private Double approvalAmount;
-    private String merchantId;
-    private Double benefitAmount;
+    private Instant approvalDate; // 일자
+    private Double approvalAmount; // 금액
+    private String merchantId; // 가맹점 이름
+    private Double benefitAmount; // 혜택금액
     private String approvalStatusCode;
-    private String paymentCategory;
+    private String paymentCategory; // 카테고리
     private String customerCardId;
 }

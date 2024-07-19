@@ -21,9 +21,4 @@ public class HomeController {
     model.addAttribute("customer", customer);
     return "home";
   }
-
-  @GetMapping("/after_home")
-  public String after_home() {
-    return "after_home";
-  }
 }

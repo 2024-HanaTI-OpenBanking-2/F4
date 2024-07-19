@@ -14,7 +14,7 @@
 <div>
   <div class="element">
     <div class="div">
-       <div class="overlap">
+      <div class="overlap">
         <!-- Dynamic username display -->
         <a href="/">
           <div class="logo-img"><img src="img/fourfintech-logo.png" alt="FourFintech"></div>
@@ -38,30 +38,31 @@
         <div class="text-wrapper-20-1">서비스를 이용하기 위해서</div>
         <div class="text-wrapper-20-1">오픈뱅킹 가입을 먼저 해 주세요.</div>
         <span class="material-symbols-outlined">keyboard_arrow_down</span>
-<!--          <form onsubmit="sendAPIRequest(); return false;">-->
-<!--            <button type="submit" id="authenticateLink" class="overlap-5 box-shadow text-wrapper-10">오픈 뱅킹 이용하기</button>-->
-<!--          </form>-->
-<!--        <div class="overlap-5 box-shadow">-->
-<!--          <a class="move-login" href="/request-auth-code">-->
-<!--        </div>-->
-        <button type="submit" id="authenticateLink" class="overlap-5 box-shadow text-wrapper-10">오픈 뱅킹 이용하기</button></a>
+        <!--          <form onsubmit="sendAPIRequest(); return false;">-->
+        <!--            <button type="submit" id="authenticateLink" class="overlap-5 box-shadow text-wrapper-10">오픈 뱅킹 이용하기</button>-->
+        <!--          </form>-->
+        <div class="overlap-5 box-shadow" id="authenticateLink">
+          <a class="move-login" href="/request-auth-code">
+            <div class="text-wrapper-10">오픈 뱅킹 서비스 가입하기</div>
+          </a>
+        </div>
       </div>
-      </div>
+    </div>
 
-      <img class="line" src="img/line-1.svg"/>
-      <div class="overlap-4">
-        <div class="overlap-group-wrapper">
-          <div class="div-wrapper box-shadow">
-            <!-- Logout link with Thymeleaf -->
-            <div class="text-wrapper-9">
-              <a class="logout" th:href="@{/logout}" th:text="'로그아웃'">Logout</a>
-            </div>
+    <img class="line" src="img/line-1.svg"/>
+    <div class="overlap-4">
+      <div class="overlap-group-wrapper">
+        <div class="div-wrapper box-shadow">
+          <!-- Logout link with Thymeleaf -->
+          <div class="text-wrapper-9">
+            <a class="logout" th:href="@{/logout}" th:text="'로그아웃'">Logout</a>
           </div>
         </div>
       </div>
-      <span class="search material-symbols-outlined">search</span>
     </div>
+    <a th:href="@{/accountinfo}" class="btn btn-primary"><span class="search material-symbols-outlined">search</span></a>
   </div>
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script src="/js/useopenbankingbutton.js"></script>

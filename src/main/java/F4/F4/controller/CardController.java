@@ -32,6 +32,8 @@ public class CardController {
         } catch (Exception e) {
             System.out.println("getCustomerCardsList Failed to get" + e);
         }
+        HttpSession session = request.getSession();
+        model.addAttribute("customer", session.getAttribute("customer"));
         return ResponseEntity.ok(response);
     }
 
