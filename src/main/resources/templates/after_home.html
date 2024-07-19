@@ -27,26 +27,29 @@
                 <p>계좌 조회</p>
                 <div th:if="${combinedAccountInfo}" class="swiper-bank-content box-shadow">
                   <ul>
-                    <li th:each="account : ${combinedAccountInfo.bankAccounts}" class="account-item" th:data-accountnum="${account.accountNum}" onclick="toggleDetails(this)">
-                      <span class="account-number">
-                        Account Number: <span th:text="${account.accountNum}"></span>
+                    <li th:each="account : ${combinedAccountInfo.bankAccounts}" class="account-item" th:data-accountnum="${account.accountNum}" th:data-balance="${account.balance}" onclick="toggleDetails(this)">
+                      <span style="display: flex; align-items: center;">
+                        <span class="account-name" th:text="${account.accountName}"></span>
+                        <span th:text="${account.bankCodeStd}"></span>
                       </span>
+                      <span style="display: flex; flex-direction: row; justify-content: space-between;">
+                        <span class="account-number"><span th:text="${account.accountNum}"></span></span>
+<!--                        <span class="account-balance" th:text="${#numbers.formatInteger(account.balance)} + ' 원'"></span>-->
+                        <span class="account-balance"></span>
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span></span>
                       <div class="account-details" style="display: none;">
-                        Account Name: <span th:text="${account.accountName}"></span><br>
-                        Balance: <span th:text="${account.balance}"></span><br>
-                        BankCodeStd: <span th:text="${account.bankCodeStd}"></span>
                         <div class="transactions"></div> <!-- 거래 내역을 표시할 div 추가 -->
                       </div>
                     </li>
                   </ul>
                 </div>
-
               </div>
             </div>
             <div class="swiper-slide swiper-container">
               <div class="swiper-content box-shadow-2">
                 <p>카드 조회</p>
-                <div class="swiper-card-content box-shadow" id="card-list">
+                <div class="swiper-card-content box-shadow">
+                  <ul id="card-list"></ul>
                 </div>
               </div>
             </div>
@@ -56,13 +59,17 @@
                 <div th:if="${combinedAccountInfo}" class="swiper-stock-content box-shadow">
                   <ul>
                     <li th:each="stock : ${combinedAccountInfo.stockAccounts}" class="stock-item">
-                      <span class="account-number">
-                        Account Number: <span th:text="${stock.accountNumber}"></span>
-
-                        financialCompany: <span th:text="${stock.financialCompany}"></span><br>
-                        cash: <span th:text="${stock.cash}"></span><br>
-                        totalAssets: <span th:text="${stock.totalAssets}"></span>
-                        <div class="transactions"></div> <!-- 거래 내역을 표시할 div 추가 -->
+                      <span style="display: flex; flex-direction: column; text-align: left;">
+                        <span style="color: gray; padding-bottom: 5px;">증권 계좌</span>
+                        <span style="font-size: 17px; font-weight: 500;" th:text="${stock.accountNumber}"></span>
+                      </span>
+                      <span style="display: flex; flex-direction: column; text-align: right;">
+                        <span style="padding-bottom: 5px;">보유 현금</span>
+                        <span style="font-size: 20px; font-weight: 700;" class="cash" th:text="${stock.cash}">보유 현금</span>
+                      </span>
+                      <span style="display: flex; flex-direction: column; text-align: right;">
+                        <span style="padding-bottom: 5px;">보유 잔액</span>
+                        <span style="font-size: 20px; font-weight: 700;" class="total-assets" th:text="${stock.totalAssets}">보유 잔액</span>
                       </span>
                     </li>
                   </ul>
@@ -73,18 +80,6 @@
               <div class="swiper-content box-shadow-2">
                 <p>보험 조회</p>
                 <div class="swiper-insurance-content box-shadow" id="insurance-list">
-<!--                  <ul>-->
-<!--                    <li th:each="insurance : ${insuranceList}" class="account-item">-->
-<!--                      <span class="insurance-name">-->
-<!--                        Insurance Name: <span th:text="${insurance.insuranceName}"></span>-->
-<!--                      </span>-->
-<!--                      <div class="insurance-details">-->
-<!--                        Start Date: <span th:text="${insurance.startDate}"></span><br>-->
-<!--                        Expiry Date: <span th:text="${insurance.expiryDate}"></span><br>-->
-<!--                      </div>-->
-<!--                    </li>-->
-<!--                  </ul>-->
-
                 </div>
               </div>
             </div>
@@ -176,12 +171,20 @@
       var cardListDiv = document.getElementById('card-list');
       cardListDiv.innerHTML = ''; // 기존 내용을 초기화
       data.forEach(card => {
+        var cardName = card.cardName;
+        var cardNum = card.customerCardId;
+        var expirationDate = formatDate(card.expirationDate);
         var cardHtml = `
-          <div class="card-item">
-            customerCardId: ${card.customerCardId}<br>
-            cardName: ${card.cardName}<br>
-            expirationDate: ${card.expirationDate}<br>
-          </div>
+          <li class="card-item" data-cardnum="${cardNum}" onclick="card_toggleDetails(this)">
+            <span class="card-name">${cardName}</span>
+            <span style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+                        <span class="card-number">${cardNum}</span>
+                        <span class="expiration-date">exp: ${expirationDate}</span>
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span></span>
+            <div class="card-details" style="display: none;">
+                        <div class="card-transactions"></div> <!-- 거래 내역을 표시할 div 추가 -->
+            </div>
+          </li>
         `;
         cardListDiv.innerHTML += cardHtml;
       });
@@ -200,11 +203,25 @@
       var insuranceListDiv = document.getElementById('insurance-list');
       insuranceListDiv.innerHTML = ''; // 기존 내용을 초기화
       data.forEach(insurance => {
+        var insuranceStatus = insurance.insuranceStatus;
+        var insuranceStatusClass = insurance.insuranceStatus === '활성' ? 'insuranceStatus-active' : 'insuranceStatus-inactive';
+        var totalFee = insurance.totalFee + ' 원';
+        var startDate = formatDate(insurance.startDate);
+        var expiryDate = formatDate(insurance.expiryDate);
         var insuranceHtml = `
           <div class="insurance-item">
-            insuranceName: ${insurance.insuranceName}<br>
-            startDate: ${insurance.startDate}<br>
-            expiryDate: ${insurance.expiryDate}<br>
+            <span style="font-size: 22px; font-weight: 500; margin-bottom: 5px;">${insurance.insuranceName}</span>
+            <span style="display: flex; flex-direction: column;">
+              <span style="margin-bottom: 5px;">
+                <span class="${insuranceStatusClass}">${insuranceStatus}</span>
+                <span style="padding-left: 20px;">보험비: ${totalFee}</span>
+              </span>
+              <span>
+                <span>시작일: ${startDate}</span> ~
+                <span>만기일: ${expiryDate}</span>
+              </span>
+            <!--                totalFee, insuranceStatus-->
+            </span>
           </div>
         `;
         insuranceListDiv.innerHTML += insuranceHtml;
@@ -212,19 +229,53 @@
     })
     .catch(error => console.error('Error fetching insurance data:', error));
   }
+
+  function formatDate(dateString) {
+    var date = new Date(dateString);
+    var year = date.getFullYear();
+    var month = String(date.getMonth() + 1).padStart(2, '0');
+    var day = String(date.getDate()).padStart(2, '0');
+    return year + '-' + month + '-' + day;
+  }
 </script>
 <script>
   function toggleDetails(element) {
     var details = element.querySelector('.account-details');
     var accountNum = element.getAttribute('data-accountnum');
     if (details.style.display === "none" || details.style.display === "") {
-      console.log(accountNum);
       details.style.display = "block";
       fetchTransactions(accountNum, element);
     } else {
       details.style.display = "none";
     }
   }
+
+  function card_toggleDetails(element) {
+    var details = element.querySelector('.card-details');
+    var cardNum = element.getAttribute('data-cardnum');
+    if (details.style.display === "none" || details.style.display === "") {
+      details.style.display = "block";
+      fetchCardTransactions(cardNum, element);
+    } else {
+      details.style.display = "none";
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // balance 값을 정수로 변환하여 표시
+    document.querySelectorAll('.account-item').forEach(function (item) {
+      var balance = Math.round(parseFloat(item.getAttribute('data-balance')));
+      item.querySelector('.account-balance').textContent = balance + ' 원';
+    });
+
+    // totalAssets 값을 정수로 변환하여 표시
+    document.querySelectorAll('.stock-item').forEach(function (item) {
+      var cash = Math.round(parseFloat(item.querySelector('.cash').textContent));
+      var totalAssets = Math.round(parseFloat(item.querySelector('.total-assets').textContent));
+      item.querySelector('.cash').textContent = cash + ' 원';
+      item.querySelector('.total-assets').textContent = totalAssets + ' 원';
+    });
+  });
 
   function fetchTransactions(accountNum, element) {
     fetch('/account/transaction_list/acnt_num?accountNum=' + accountNum)
@@ -233,18 +284,73 @@
       var transactionsDiv = element.querySelector('.transactions');
       transactionsDiv.innerHTML = ''; // 기존 내용을 초기화
       data.forEach(transaction => {
+        var amount = Math.round(transaction.amount);
+        var tranAmt = Math.round(transaction.tranAmt);
+        var afterBalanceAmt = Math.round(transaction.afterBalanceAmt);
+
+        // in/out이 out인 경우 스타일 적용
+        var inoutClass = transaction.inoutType === 'out' ? 'transaction-out' : 'transaction-in';
+        var amountText = transaction.inoutType === 'out' ? '-' + amount : amount;
+
         var transactionHtml = `
             <div class="transaction-item">
-              Transaction No: ${transaction.transactionNo}<br>
-              Amount: ${transaction.amount}<br>
-              Date: ${transaction.tranDate}<br>
-              Type: ${transaction.transactionType}<br>
-              Time: ${transaction.tranTime}<br>
-              In/Out: ${transaction.inoutType}<br>
-              Content: ${transaction.printContent}<br>
-              Amount: ${transaction.tranAmt}<br>
-              Balance After: ${transaction.afterBalanceAmt}<br>
-              Branch: ${transaction.branchName}<br>
+              <span style="display: flex;
+                           flex-direction: column;
+                           align-items: flex-start;
+                           width: 200px;">
+                           <span style="color: gray;
+                                        font-size: 13px;
+                                        font-weight: 400;">${transaction.tranDate}</span>
+                           <span style="font-weight: 500;">${transaction.printContent}</span>
+              </span>
+              <span style="display: flex;
+                           flex-direction: column;
+                           align-items: flex-end;
+                           width: 140px;">
+                           <span class="${inoutClass}">${amountText} 원</span>
+                           <span style="font-weight: 500;">잔액 ${afterBalanceAmt} 원</span>
+              </span>
+            </div>
+          `;
+        transactionsDiv.innerHTML += transactionHtml;
+      });
+    })
+    .catch(error => console.error('Error fetching transactions:', error));
+  }
+
+  function fetchCardTransactions(cardNum, element) {
+    fetch('/card/card-approval?customer-card-id=' + cardNum)
+    .then(response => response.json())
+    .then(data => {
+      var transactionsDiv = element.querySelector('.card-transactions');
+      transactionsDiv.innerHTML = ''; // 기존 내용을 초기화
+      data.forEach(transaction => {
+        var approvalDate = formatDate(transaction.approvalDate);
+        var approvalAmount = '-' + Math.round(transaction.approvalAmount) + ' 원';
+        var benefitAmount = '(혜택 : ' + Math.round(transaction.benefitAmount) + ' 원)';
+        var merchantId = transaction.merchantId;
+        var paymentCategory = transaction.paymentCategory;
+
+        var transactionHtml = `
+            <div class="transaction-item">
+              <span style="display: flex;
+                           flex-direction: column;
+                           align-items: flex-start;
+                           width: 200px;">
+                           <span style="color: gray;
+                                        font-size: 13px;
+                                        font-weight: 400;">${approvalDate}</span>
+                           <span>
+                             <span style="font-weight: 500;">${merchantId}</span>
+                             <span class="payment-category">${paymentCategory}</span></span>
+              </span>
+              <span style="display: flex;
+                           flex-direction: column;
+                           align-items: flex-end;
+                           width: 140px;">
+                           <span style="font-weight: 500; color: mediumblue;">${approvalAmount}</span>
+                           <span>${benefitAmount}</span>
+              </span>
             </div>
           `;
         transactionsDiv.innerHTML += transactionHtml;

@@ -63,7 +63,7 @@ public class AuthController {
             Map<String, String> response = new HashMap<>();
             // 배포시 실제 IP 주소로 변경하기
             response.put("redirectUrl",
-                "http://localhost:8081/tokenResult?access_token=" + accessTokenResponse.getAccess_token()
+                "http://43.203.242.167:8080/tokenResult?access_token=" + accessTokenResponse.getAccess_token()
                     + "&state=" + state + "&customer_id=" + customerId);
 
             return ResponseEntity.ok(response);
